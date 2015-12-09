@@ -1,0 +1,121 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.js"></script>
+<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/STLLoader.js"></script>
+<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/TrackballControls.js" type="text/javascript"></script>
+<script src="/js/embedapi.js"></script>
+
+<script src="/js/stl_viewer.js" type="text/javascript"></script>
+
+<script>
+$(function () {'use strict';
+  initViewer();
+  animateViewer("<%= template[:stl_key] %>");
+
+  $(".flavor").click(function(e) {
+    var material = $(this).data('material')
+    console.log(material);
+    $("#material-selector").val(material);
+  });
+
+  $(".cookie-image").click(function(e) {
+    $(".cookie-image").removeClass("flavor_img_clicked");
+    $(this).addClass("flavor_img_clicked");
+  });
+
+  $("#next-btn").click(function() {
+    $("#material-form").submit();
+  });
+
+});
+</script>
+  <div class="col-md-8">
+    <div class="size-wrapper row">
+      <div class="col-md-4">
+        <div class="row>">
+          <div class="flavor col-md-12" data-material="chocolate">
+            <img class = "cookie-image" src="/images/chocolate.png">
+            <div class="flavor-text">
+              Chocolate
+            </div>
+          </div>
+        </div>
+        <div class="row>">
+          <div class="flavor col-md-12" data-material="blueberry">
+            <img class = "cookie-image" src="/images/blueberry.png">
+            <div class="flavor-text">
+              Blueberry
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="row>">
+          <div class="flavor col-md-12" data-material="peanut_butter">
+            <img class = "cookie-image" src="/images/peanut_butter.png">
+            <div class="flavor-text">
+              Peanut Butter
+            </div>
+          </div>
+        </div>
+        <div class="row>">
+          <div class="flavor col-md-12" data-material="double_chocolate_chip">
+            <img class = "cookie-image" src="/images/double_chocolate_chip.png">
+            <div class="flavor-text">
+              Chocolate Chip
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="row>">
+          <div class="flavor col-md-12" data-material="matcha_tea">
+            <img class = "cookie-image" src="/images/matcha_tea.png">
+            <div class="flavor-text">
+              Matcha Tea
+            </div>
+          </div>
+        </div>
+        <div class="row>">
+          <div class="flavor col-md-12" data-material="very_berry">
+            <img class = "cookie-image" src="/images/very_berry.png">
+            <div class="flavor-text">
+              Very Berry
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-4">
+    <h3 id="your-cookie">Your Cookie:</h3>
+      <div class="viewer"></div>
+      <div class="row">
+          <form action="" method="POST" id="material-form">
+            <div class="form-group">
+              <select class="form-control" name="material" id="material-selector" style="display: none">
+                <option value="chocolate">chocolate</option>
+                <option value="blueberry">blueberry</option>
+                <option value="peanut_butter">peanut_butter</option>
+                <option value="double_chocolate_chip">double_chocolate_chip</option>
+                <option value="matcha_tea">matcha_tea</option>
+                <option value="very_berry">very_berry</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="is-public-wrapper">
+              <label>
+                <input name="is_public" type="checkbox" value="public">
+                Allow others to use your design?
+              </label>
+            </div>
+          </form>
+      </div>
+      <div>
+        <button id="next-btn" class="btn btn-default btn-lg btn-block">
+          Create Your Cookie!
+        </button>
+      </div>
+  </div>

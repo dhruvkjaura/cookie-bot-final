@@ -1,0 +1,16 @@
+<div class='row'>
+    <% user.templates.sort_by(&:id).reverse.each do |t| %>
+    <div class='col-md-4'>
+      <div class='container'>
+        <div class="user-template card hovercard">
+            <img src="<%= t.svg_encoded_str %>" />
+          <div class="bottom">
+            <a href="/app?id=<%= t.id %>">
+              <button id="custom-btn" class="btn btn-default">Customize</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+</div>

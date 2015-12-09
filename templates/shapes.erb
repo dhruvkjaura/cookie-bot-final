@@ -1,0 +1,47 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.js"></script>
+<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/STLLoader.js"></script>
+<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/TrackballControls.js" type="text/javascript"></script>
+<script src="/js/embedapi.js"></script>
+
+<script src="/js/stl_viewer.js" type="text/javascript"></script>
+
+<script>
+  $("#size").click(function(e) {
+    var size = $(e).data('size')
+    $("#size-selector").val(size);
+  });
+
+    $(".shapes_image").click(function(e) {
+    $(".shapes_image").removeClass("shapes_img_clicked");
+    $(this).addClass("shapes_img_clicked");
+  });
+});
+</script>
+<div class="col-md-12">
+  <div class="size-wrapper row">
+    <% shapes = {
+        shape_square: 173,
+        shape_triangle: 170,
+        shape_star: 143,
+        shape_ellipse: 141,
+        shape_rectangle: 174,
+        shape_diamond: 175
+      }
+      shapes.each_with_index do |(shape, template_id), idx|
+    %>
+      <% if idx%2 == 0  %>
+        <div class="col-md-4">
+      <% end %>
+        <div class="row>">
+          <div class="shapes col-md-12">
+            <a href="/app?id=<%= template_id %>">
+              <img class= "shapes_image" src="/images/<%= shape %>.png">
+            </a>
+          </div>
+        </div>
+      <% if idx%2 != 0  %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
